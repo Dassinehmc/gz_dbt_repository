@@ -3,6 +3,7 @@
 WITH sales_data AS (
     SELECT 
         sales.orders_id,
+        sales.date_date,
         sales.quantity,
         sales.revenue,
         products.purchase_price
@@ -16,6 +17,7 @@ WITH sales_data AS (
 
 SELECT
     orders_id,
+    date_date,
     CAST(quantity AS INT64) * CAST(purchase_price AS FLOAT64) AS purchase_cost,   -- Calcul de purchase_cost
     ROUND(CAST(revenue AS FLOAT64) - (CAST(quantity AS INT64) * CAST(purchase_price AS FLOAT64)),2) AS margin -- Calcul de la marge
 FROM 
