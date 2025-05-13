@@ -3,12 +3,43 @@
 version: 2
 
 sources:
-  - name: raw            # alias pour simplifier les appels
-    schema: gz_raw_data  # nom réel du dataset dans BigQuery
+  - name: raw
+    schema: gz_raw_data
     tables:
       - name: sales
         identifier: raw_gz_sales
+        description: Sales of Greenweez – one row per pdt_id found in each orders_id
+
+        columns:
+          - name: date_date
+            description: Date of purchase
+          - name: orders_id
+            description: ID of the order
+          - name: pdt_id
+            description: ID of the product
+          
       - name: product
         identifier: raw_gz_product
+        description: List of all products sold on Greenweez
+        columns:
+          - name: products_id
+            description: Unique ID of the product
+            tests: 
+              - unique
+              - not_null
+          - name: purchse_price
+            description: Purchase price of the product
+
       - name: ship
         identifier: raw_gz_ship
+        description: Shipping details for each order
+        columns:
+          - name: orders_id
+            description: ID of the order
+            tests:
+              - unique
+              - not_null
+          - name: ship_cost
+            description: Actual cost of shipping
+          - name: shipping_fee
+            description: Fee charged to customer for shipping
