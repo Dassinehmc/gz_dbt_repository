@@ -10,7 +10,7 @@ with
             cast(shipping_fee as float64) as shipping_fee,
             cast(logcost as float64) as log_cost,
             cast(ship_cost as float64) as ship_cost
-        from {{ ref("stg_raw__ship") }}
+        from {{ ref("stg_raw_ship") }}
     )
 
 select
